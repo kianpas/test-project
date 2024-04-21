@@ -1,15 +1,9 @@
-"use client"
-
-import type { NextComponentType, NextPageContext } from "next";
+"use client";
 
 interface Props {}
 
-const Error: NextComponentType<NextPageContext, {}, Props> = (
-  props: Props,
-) => {
-  return (
-    <div>Error</div>
-  )
-}
+const Error = (props: Props) => {
+  return <div>Error</div>;
+};
 
-export default Error
+export default Error;
