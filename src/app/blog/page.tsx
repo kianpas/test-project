@@ -2,18 +2,21 @@ import PostCard from "@/components/postCard/PostCard";
 import styles from "./blog.module.css";
 import { Post } from "@/types/post";
 
-const getData = async (): Promise<Post[]> => {
+const getPosts = async (): Promise<Post[]> => {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
 
   if (!res.ok) {
-    throw new Error("something went wrong");
+    throw new Error(`API call failed with status ${res.status}`);
   }
 
-  return res.json();
+  const posts: Post[] = await res.json();
+
+  return posts;
 };
 
 const BlogPage = async () => {
-  const posts = await getData();
+  const posts = await getPosts();
+
   return (
     <div className={styles.container}>
       {posts.map((post: Post) => (
