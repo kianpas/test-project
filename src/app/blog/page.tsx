@@ -1,6 +1,7 @@
 import PostCard from "@/components/postCard/PostCard";
 import styles from "./blog.module.css";
 import { Post } from "@/types/post";
+import Link from "next/link";
 
 const getPosts = async (): Promise<Post[]> => {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
@@ -21,7 +22,9 @@ const BlogPage = async () => {
     <div className={styles.container}>
       {posts.map((post: Post) => (
         <div className={styles.post} key={post.id}>
-          <PostCard post={post}></PostCard>
+          <Link href={`/blog/${post.id}`}>
+            <PostCard post={post}></PostCard>
+          </Link>
         </div>
       ))}
     </div>
